@@ -64,6 +64,16 @@ dotnet publish ./src/DiIiS-NA/Blizzless.csproj --configuration Release --output 
   - `!account add username@ YourPassword YourBattleTag owner`
  - Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag` with rank `owner`
 
+### Example:
+
+> !account add username@ YourPassword YourBattleTag
+
+Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag`
+
+> !account add username@ YourPassword YourBattleTag owner
+
+Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag` with rank `owner`
+
 ## Prepare Client
 
 Do this for each client connecting to the server.
