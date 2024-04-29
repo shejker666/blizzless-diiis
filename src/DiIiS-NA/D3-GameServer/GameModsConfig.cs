@@ -155,7 +155,7 @@ public class GameModsConfig
                     return;
                 }
 
-                Logger.Fatal("An error occured whilst loading $[white on red]$config.mods.json$[/]$ file. Please verify if the file is correct. Delete the file and try again.");
+                Logger.Fatal("An error occurred whilst loading $[white on red]$config.mods.json$[/]$ file. Please verify if the file is correct. Delete the file and try again.");
                 Program.Shutdown(ex);
             }
         }

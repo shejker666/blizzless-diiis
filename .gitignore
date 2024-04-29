@@ -370,3 +370,6 @@ FodyWeavers.xsd
 db/data/pgdata/
 db/pgadmin/*
 !db/pgadmin/pgpass
+/src/DiIiS-NA/config.ini
+/src/DiIiS-NA/database.Account.config
+/src/DiIiS-NA/database.Worlds.config
