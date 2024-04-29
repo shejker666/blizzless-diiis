@@ -50,6 +50,11 @@ namespace DiIiS_NA.Core.Logging
 			return Loggers[name]; // return the newly created logger.
 		}
 
+        public static Logger CreateLogger<T>([CallerFilePath] string filePath = "")
+        {
+            return CreateLogger(typeof(T).Name, filePath);
+        }
+
 		/// <summary>
 		/// Attachs a new log target.
 		/// </summary>

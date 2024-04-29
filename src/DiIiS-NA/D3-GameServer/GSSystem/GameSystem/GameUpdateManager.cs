@@ -6,11 +6,12 @@ using DiIiS_NA.Core.Logging;
 
 namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 {
-	public static class GameUpdateManager
-	{
-		private static readonly Logger Logger = LogManager.CreateLogger("ThreadSystem");
+	[Obsolete("Doesn't seem to be used anywhere, and may use more resources.")]
+	public class GameUpdateManager
+    {
+        private static readonly Logger Logger = LogManager.CreateLogger<GameUpdateManager>();
 
-		private static List<GameUpdateThread> UpdateWorkers = new List<GameUpdateThread>();
+		private static readonly List<GameUpdateThread> _updateWorkers = new();
 
 		static GameUpdateManager()
 		{
@@ -21,18 +22,20 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 			int CPUCount = Environment.ProcessorCount;
 			for (int coreId = 0; coreId < CPUCount; coreId++)
 			{
-				var thread = new GameUpdateThread();
-				thread.CPUAffinity = (1UL << coreId);
-				UpdateWorkers.Add(thread);
+				var thread = new GameUpdateThread
+                {
+                    CPUAffinity = (1UL << coreId)
+                };
+                _updateWorkers.Add(thread);
 				var loopThread = new Thread(thread.Run) { Name = "UpdateWorkerThread", IsBackground = true }; ; // create the game update thread.
 				loopThread.Start();
 			}
-			Logger.Info("Запущено {0} потоков", CPUCount);
+			Logger.Info("Using {0} worker threads for game updates.", CPUCount);
 		}
 
 		public static GameUpdateThread FindWorker()
 		{
-			return UpdateWorkers.OrderBy(t => t.Games.Count).First();
+			return _updateWorkers.OrderBy(t => t.Games.Count).First();
 		}
 	}
 }

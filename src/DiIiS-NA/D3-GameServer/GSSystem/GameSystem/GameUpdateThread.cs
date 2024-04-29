@@ -20,20 +20,14 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 		[DllImport("libc.so.6")]
 		private static extern int sched_setaffinity(int pid, IntPtr cpusetsize, ref ulong cpuset);
 
-		private int CurrentTId
-		{
-			get
-			{
-				return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? GetCurrentThreadId() : getpid();
-			}
-		}
+		private int CurrentTId => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? GetCurrentThreadId() : getpid();
 
-		private static readonly Logger Logger = LogManager.CreateLogger();
+        private static readonly Logger Logger = LogManager.CreateLogger();
 		public List<Game> Games = new List<Game>();
 
 		private object _lock = new object();
 
-		public ulong CPUAffinity = 0;
+		public ulong CPUAffinity { get; }
 
 		public void Run()
 		{
