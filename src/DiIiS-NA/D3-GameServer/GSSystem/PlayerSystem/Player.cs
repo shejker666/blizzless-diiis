@@ -223,9 +223,9 @@ public class Player : Actor, IMessageConsumer, IUpdateable
             if (value == null)
             {
                 HirelingId = null;
-                lock (Toon.DBToon)
+                lock (Toon.DbToon)
                 {
-                    var dbToon = Toon.DBToon;
+                    var dbToon = Toon.DbToon;
                     dbToon.ActiveHireling = null;
                     DBSessions.SessionUpdate(dbToon);
                 }
@@ -233,9 +233,9 @@ public class Player : Actor, IMessageConsumer, IUpdateable
             else if (value != _activeHireling)
             {
                 HirelingId = value.Attributes[GameAttributes.Hireling_Class];
-                lock (Toon.DBToon)
+                lock (Toon.DbToon)
                 {
-                    var dbToon = Toon.DBToon;
+                    var dbToon = Toon.DbToon;
                     dbToon.ActiveHireling = value.Attributes[GameAttributes.Hireling_Class];
                     DBSessions.SessionUpdate(dbToon);
                 }
@@ -294,10 +294,10 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         PlayerGroupIndex = InGameClient.Game.PlayerGroupIndexCounter;
         Toon = bnetToon;
         LevelingBoosted = Toon.LevelingBoosted;
-        var dbToon = Toon.DBToon;
+        var dbToon = Toon.DbToon;
         HirelingId = dbToon.ActiveHireling;
         GBHandle.Type = (int)ActorType.Player;
-        GBHandle.GBID = Toon.ClassID;
+        GBHandle.GBID = Toon.ClassId;
         Level = dbToon.Level;
         ParagonLevel = Toon.ParagonLevel;
         ExperienceNext = Toon.ExperienceNext;
@@ -357,7 +357,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         else if (InGameClient.Game.CurrentAct == 3000)
             EnableStoneOfRecall();
 
-        var lores = UnserializeBytes(Toon.DBToon.Lore);
+        var lores = UnserializeBytes(Toon.DbToon.Lore);
         var num = 0;
         foreach (var lore in lores)
         {
@@ -1448,10 +1448,10 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         Attributes[GameAttributes.Casting_Speed] = 1f;
 
         //Basic stats
-        Attributes[GameAttributes.Level_Cap] = Program.MaxLevel;
+        Attributes[GameAttributes.Level_Cap] = Program.MAX_LEVEL;
         Attributes[GameAttributes.Level] = Level;
         Attributes[GameAttributes.Alt_Level] = ParagonLevel;
-        if (Level == Program.MaxLevel)
+        if (Level == Program.MAX_LEVEL)
         {
             Attributes[GameAttributes.Alt_Experience_Next_Lo] = (int)(ExperienceNext % uint.MaxValue);
             Attributes[GameAttributes.Alt_Experience_Next_Hi] = (int)(ExperienceNext / uint.MaxValue);
@@ -2196,7 +2196,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         // message.Amount have the value send to add on attr of Paragon tabs.
         ParagonBonuses[bonus.Category * 4 + bonus.Index - 1] += (ushort)message.Amount;
 
-        var dbToon = Toon.DBToon;
+        var dbToon = Toon.DbToon;
         dbToon.ParagonBonuses = ParagonBonuses;
         World.Game.GameDbSession.SessionUpdate(dbToon);
 
@@ -2214,7 +2214,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
     {
         ParagonBonuses = new ushort[]
             { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-        var dbToon = Toon.DBToon;
+        var dbToon = Toon.DbToon;
         dbToon.ParagonBonuses = ParagonBonuses;
         World.Game.GameDbSession.SessionUpdate(dbToon);
 
@@ -2902,7 +2902,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
     //*/
     private void OnEquipPotion(GameClient client, ChangeUsableItemMessage message)
     {
-        var activeSkills = Toon.DBActiveSkills;
+        var activeSkills = Toon.DbActiveSkills;
         activeSkills.PotionGBID = message.Field1;
         World.Game.GameDbSession.SessionUpdate(activeSkills);
     }
@@ -4225,7 +4225,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         serialized += Inventory.GetItemBonus(GameAttributes.Armor_Item).ToString("F0");
         serialized += ";";
         serialized += totalDamage.ToString("F0");
-        var dbStats = Toon.DBToon;
+        var dbStats = Toon.DbToon;
         dbStats.Stats = serialized;
         World.Game.GameDbSession.SessionUpdate(dbStats);
     }
@@ -4322,7 +4322,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
             else
             {
                 bonusSet.Claimed = true;
-                bonusSet.ClaimedToon = Toon.DBToon;
+                bonusSet.ClaimedToon = Toon.DbToon;
             }
 
             //BonusSetsList.CollectionEditions[bonusSet.SetId].Claim(this);
@@ -4529,8 +4529,8 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         foreach (var mail in mailData)
         {
             var mailRow = D3.Items.Mail.CreateBuilder()
-                .SetAccountTo(Toon.D3EntityID)
-                .SetAccountFrom(Toon.D3EntityID)
+                .SetAccountTo(Toon.D3EntityId)
+                .SetAccountFrom(Toon.D3EntityId)
                 .SetMailId(mail.Id)
                 .SetTitle(mail.Title)
                 .SetBody(mail.Body);
@@ -5983,7 +5983,7 @@ public class Player : Actor, IMessageConsumer, IUpdateable
             LearnedLore.Count++; // Count
             UpdateHeroState();
             Logger.Trace("Learning lore #{0}", loreSNOId);
-            var dbToon = Toon.DBToon;
+            var dbToon = Toon.DbToon;
             dbToon.Lore = SerializeBytes(LearnedLore.m_snoLoreLearned.Take(LearnedLore.Count).ToList());
             World.Game.GameDbSession.SessionUpdate(dbToon);
         }

@@ -26,7 +26,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 		private bool SenderMessageReceived(byte[] data)
 		{
 			string msg = "";
-			if (data != null && data.Length > 0) msg = Encoding.UTF8.GetString(data);
+			if (data is { Length: > 0 }) msg = Encoding.UTF8.GetString(data);
 			Logger.Debug("Message from Battle.net: {0}", msg);
 
 			var message = msg.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);

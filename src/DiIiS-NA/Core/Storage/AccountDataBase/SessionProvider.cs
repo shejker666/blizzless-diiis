@@ -36,10 +36,7 @@ namespace DiIiS_NA.Core.Storage.AccountDataBase
 				{
 					_config = new Configuration();
 #if DEBUG
-					if (File.Exists(Path.Combine(FileHelpers.AssemblyRoot, "database.Account.Debug.config")))
-                        _config = _config.Configure(Path.Combine(FileHelpers.AssemblyRoot, "database.Account.Debug.config"));
-                    else
-                        _config = _config.Configure(Path.Combine(FileHelpers.AssemblyRoot, "database.Account.config"));
+                    _config = _config.Configure(File.Exists(Path.Combine(FileHelpers.AssemblyRoot, "database.Account.Debug.config")) ? Path.Combine(FileHelpers.AssemblyRoot, "database.Account.Debug.config") : Path.Combine(FileHelpers.AssemblyRoot, "database.Account.config"));
 #else
                     _config = _config.Configure(Path.Combine(FileHelpers.AssemblyRoot, "database.Account.config"));
 #endif

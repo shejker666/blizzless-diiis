@@ -56,12 +56,18 @@ public class MonsterConfig
     public float AttacksPerSecond { get; set; } = 1.2f;
 
     public float HealthMultiplier { get; set; } = 1;
+    public float HealthBonusMultiplier { get; set; } = 1;
     public float DamageMultiplier { get; set; } = 1;
 
     /// <summary>
     /// Attack target range
     /// </summary>
-    public float LookupRange { get; set; } = 50f;
+    public float LookupRange { get; set; } = 80f;
+
+    /// <summary>
+    /// Total health bonus multiplier that can be applied to a monster
+    /// </summary>
+    public float HealthBonusMultiplierCap { get; set; } = 1.025f;
 }
 
 public class QuestConfig

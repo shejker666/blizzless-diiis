@@ -64,7 +64,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
             foreach (Toon t in Client.Account.GameAccount.Toons)
             {
                 d.AddDigestList(t.Digest);
-                GAS.AddHeroListOrder(t.D3EntityID);
+                GAS.AddHeroListOrder(t.D3EntityId);
             }
 
             Init.SetGameAccountSettings(GAS);
@@ -661,7 +661,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
             if (hero != null)
             {
                 var Snapshot = D3.Leaderboard.HeroSnapshot.CreateBuilder()
-                    .SetHeroId(hero.D3EntityID)
+                    .SetHeroId(hero.D3EntityId)
                     .AddCosmeticItems(D3.Leaderboard.HeroCosmeticItem.CreateBuilder().SetCosmeticVisualInventorySlot(1)
                         .SetGbid(hero.Cosmetic1))
                     .AddCosmeticItems(D3.Leaderboard.HeroCosmeticItem.CreateBuilder().SetCosmeticVisualInventorySlot(2)
@@ -671,21 +671,21 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
                     .AddCosmeticItems(D3.Leaderboard.HeroCosmeticItem.CreateBuilder().SetCosmeticVisualInventorySlot(4)
                         .SetGbid(hero.Cosmetic4))
                     .SetActiveSkills(SkillsWithRunes.CreateBuilder()
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill0)
-                            .SetRuneType(hero.DBActiveSkills.Rune0))
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill1)
-                            .SetRuneType(hero.DBActiveSkills.Rune1))
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill2)
-                            .SetRuneType(hero.DBActiveSkills.Rune2))
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill3)
-                            .SetRuneType(hero.DBActiveSkills.Rune3))
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill4)
-                            .SetRuneType(hero.DBActiveSkills.Rune4))
-                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DBActiveSkills.Skill5)
-                            .SetRuneType(hero.DBActiveSkills.Rune5)))
-                    .SetActiveTraits(PassiveSkills.CreateBuilder().AddSnoTraits(hero.DBActiveSkills.Passive0)
-                        .AddSnoTraits(hero.DBActiveSkills.Passive1).AddSnoTraits(hero.DBActiveSkills.Passive2)
-                        .AddSnoTraits(hero.DBActiveSkills.Passive3));
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill0)
+                            .SetRuneType(hero.DbActiveSkills.Rune0))
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill1)
+                            .SetRuneType(hero.DbActiveSkills.Rune1))
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill2)
+                            .SetRuneType(hero.DbActiveSkills.Rune2))
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill3)
+                            .SetRuneType(hero.DbActiveSkills.Rune3))
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill4)
+                            .SetRuneType(hero.DbActiveSkills.Rune4))
+                        .AddRunes(SkillWithRune.CreateBuilder().SetSkill(hero.DbActiveSkills.Skill5)
+                            .SetRuneType(hero.DbActiveSkills.Rune5)))
+                    .SetActiveTraits(PassiveSkills.CreateBuilder().AddSnoTraits(hero.DbActiveSkills.Passive0)
+                        .AddSnoTraits(hero.DbActiveSkills.Passive1).AddSnoTraits(hero.DbActiveSkills.Passive2)
+                        .AddSnoTraits(hero.DbActiveSkills.Passive3));
 
                 foreach (var item in hero.Profile.Equipment.ItemsList)
                 {
@@ -842,7 +842,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
                             .SetHeroAltLevel((uint)gameAccount2.DBGameAccount.ParagonLevel)
                             .SetHeroFlags((uint)Hero.Flags)
                             .SetHeroLevel((uint)Hero.Level)
-                            .SetHeroGbidClass((uint)Hero.ClassID)
+                            .SetHeroGbidClass((uint)Hero.ClassId)
                             .SetHeroName(Hero.Name)
                             .SetHeroSnapshotAvailable(true)
                             .SetHeroVisualEquipment(gameAccount2.Toons[0].Digest.VisualEquipment);
@@ -1001,7 +1001,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
                             .SetHeroAltLevel((uint)gameAccount.DBGameAccount.ParagonLevel)
                             .SetHeroFlags((uint)hero.Flags)
                             .SetHeroLevel((uint)hero.Level)
-                            .SetHeroGbidClass((uint)hero.ClassID)
+                            .SetHeroGbidClass((uint)hero.ClassId)
                             .SetHeroName(hero.Name)
                             .SetHeroSnapshotAvailable(true)
                             .SetHeroVisualEquipment(gameAccount.Toons[0].Digest.VisualEquipment);
@@ -1097,7 +1097,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
             var newToon = ToonManager.CreateNewToon(createParams.Name, createParams.GbidClass,
                 createParams.IsFemale ? ToonFlags.Female : ToonFlags.Male, 1, createParams.IsHardcore,
                 client.Account.GameAccount, createParams.IsSeason ? 1 : 0);
-            return CreateHeroResponse.CreateBuilder().SetHeroId(newToon.D3EntityID.IdLow).Build().ToByteString();
+            return CreateHeroResponse.CreateBuilder().SetHeroId(newToon.D3EntityId.IdLow).Build().ToByteString();
         }
 
         private ByteString OnHeroDeleteParams(BattleClient client, ByteString data)
@@ -3118,7 +3118,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
             var Response = RebirthHeroResponse.CreateBuilder();
             foreach (Toon t in client.Account.GameAccount.Toons)
             {
-                if (t.D3EntityID.IdLow == Request.HeroId)
+                if (t.D3EntityId.IdLow == Request.HeroId)
                 {
                     //t.SetSeason(1);
 

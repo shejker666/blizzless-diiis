@@ -48,12 +48,12 @@ namespace DiIiS_NA
     }
     class Program
     {
-        private static readonly Logger Logger = LogManager.CreateLogger("BZ.Net");
+        private static readonly Logger Logger = LogManager.CreateLogger("Blizzless");
         public static readonly DateTime StartupTime = DateTime.Now;
         public static BattleBackend BattleBackend { get; set; }
         public bool GameServersAvailable = true;
 
-        public const int MaxLevel = 70;
+        public const int MAX_LEVEL = 70;
 
         public static GameServer.ClientSystem.GameServer GameServer;
         public static Watchdog Watchdog;
@@ -66,10 +66,10 @@ namespace DiIiS_NA
         public static string RestServerIp = RestConfig.Instance.IP;
         public static string PublicGameServerIp = DiIiS_NA.GameServer.NATConfig.Instance.PublicIP;
 
-        public const int Build = 30;
-        public const int Stage = 3;
+        public const int BUILD = 30;
+        public const int STAGE = 3;
         public static TypeBuildEnum TypeBuild => TypeBuildEnum.Beta;
-        private static bool DiabloCoreEnabled = DiIiS_NA.GameServer.GameServerConfig.Instance.CoreActive;
+        private static bool _diabloCoreEnabled = DiIiS_NA.GameServer.GameServerConfig.Instance.CoreActive;
 
         private static readonly CancellationTokenSource CancellationTokenSource = new();
         public static readonly CancellationToken Token = CancellationTokenSource.Token;
@@ -84,8 +84,8 @@ namespace DiIiS_NA
             void RightTextRule(string text, string ruleStyle) => AnsiConsole.Write(new Rule(text).RuleStyle(ruleStyle));
             string Url(string url) => $"[link={url}]{url}[/]";
             RightTextRule("[dodgerblue1]Blizz[/][deepskyblue2]less[/]", "steelblue1");
-            RightTextRule($"[dodgerblue3]Build [/][deepskyblue3]{Build}[/]", "steelblue1_1");
-            RightTextRule($"[dodgerblue3]Stage [/][deepskyblue3]{Stage}[/]", "steelblue1_1");
+            RightTextRule($"[dodgerblue3]Build [/][deepskyblue3]{BUILD}[/]", "steelblue1_1");
+            RightTextRule($"[dodgerblue3]Stage [/][deepskyblue3]{STAGE}[/]", "steelblue1_1");
             RightTextRule($"[deepskyblue3]{TypeBuild}[/]", "steelblue1_1");
             RightTextRule($"Diablo III [red]RoS 2.7.4.84161[/] - {Url("https://github.com/blizzless/blizzless-diiis")}",
                 "red");
@@ -100,14 +100,14 @@ namespace DiIiS_NA
             DbProviderFactories.RegisterFactory("Npgsql", NpgsqlFactory.Instance);
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-            string name = $"Blizzless: Build {Build}, Stage: {Stage} - {TypeBuild}";
+            string name = $"Blizzless: Build {BUILD}, Stage: {STAGE} - {TypeBuild}";
             SetTitle(name);
             if (LogConfig.Instance.Targets.Any(x => x.MaximizeWhenEnabled && x.Enabled))
                 Maximize();
             WriteBanner();
             InitLoggers();
 #if DEBUG
-            DiabloCoreEnabled = true;
+            _diabloCoreEnabled = true;
             Logger.Info("Forcing Diablo III Core to be $[green]$enabled$[/]$ on debug mode.");
 #else
             if (!DiabloCoreEnabled)
@@ -208,7 +208,7 @@ namespace DiIiS_NA
             GuildManager.PreLoadGuilds();
 
             Logger.Info("Loading Diablo III - Core...");
-            if (DiabloCoreEnabled)
+            if (_diabloCoreEnabled)
             {
                 if (!MPQStorage.Initialized)
                 {
@@ -241,7 +241,7 @@ namespace DiIiS_NA
             BattleBackend = new BattleBackend(loginConfig.BindIP, loginConfig.WebPort);
 
             //Diablo 3 Game-Server
-            if (DiabloCoreEnabled)
+            if (_diabloCoreEnabled)
                 StartGameServer();
             else Logger.Fatal("Game server is disabled in the configs.");
 
@@ -385,28 +385,17 @@ namespace DiIiS_NA
                 if (!targetConfig.Enabled)
                     continue;
 
-                LogTarget target = null;
-                switch (targetConfig.Target.ToLower())
+                LogTarget target = targetConfig.Target.ToLower() switch
                 {
-                    case "ansi":
-                        target = new AnsiTarget(
-                            targetConfig.MinimumLevel,
-                            targetConfig.MaximumLevel,
-                            targetConfig.IncludeTimeStamps,
-                            targetConfig.TimeStampFormat);
-                        break;
-                    case "console":
-                        target = new ConsoleTarget(targetConfig.MinimumLevel, targetConfig.MaximumLevel,
-                                                   targetConfig.IncludeTimeStamps,
-                                                   targetConfig.TimeStampFormat);
-                        break;
-                    case "file":
-                        target = new FileTarget(targetConfig.FileName, targetConfig.MinimumLevel,
-                                                targetConfig.MaximumLevel, targetConfig.IncludeTimeStamps,
-                                                targetConfig.TimeStampFormat,
-                                                targetConfig.ResetOnStartup);
-                        break;
-                }
+                    "ansi" => new AnsiTarget(targetConfig.MinimumLevel, targetConfig.MaximumLevel,
+                        targetConfig.IncludeTimeStamps, targetConfig.TimeStampFormat),
+                    "console" => new ConsoleTarget(targetConfig.MinimumLevel, targetConfig.MaximumLevel,
+                        targetConfig.IncludeTimeStamps, targetConfig.TimeStampFormat),
+                    "file" => new FileTarget(targetConfig.FileName, targetConfig.MinimumLevel,
+                        targetConfig.MaximumLevel, targetConfig.IncludeTimeStamps, targetConfig.TimeStampFormat,
+                        targetConfig.ResetOnStartup),
+                    _ => null
+                };
 
                 if (target != null)
                     LogManager.AttachLogTarget(target);
@@ -464,7 +453,6 @@ namespace DiIiS_NA
         const int RESTORE = 9;
         private static void Maximize()
         {
-            // if it's running on windows
             try
             {
                 if (Environment.OSVersion.Platform == PlatformID.Win32NT)

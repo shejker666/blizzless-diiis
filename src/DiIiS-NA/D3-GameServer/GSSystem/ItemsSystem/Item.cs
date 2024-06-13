@@ -1353,7 +1353,7 @@ namespace DiIiS_NA.GameServer.GSSystem.ItemsSystem
             player.Attributes[GameAttributes.Buff_Icon_Count0, powerId] = activated ? 0 : 1;
             player.Attributes.BroadcastChangedIfRevealed();
             player.Inventory.SendVisualInventory(player);
-            var dbToon = player.Toon.DBToon;
+            var dbToon = player.Toon.DbToon;
             dbToon.WingsActive = player.CurrentWingsPowerId;
             player.World.Game.GameDbSession.SessionUpdate(dbToon);
             return;

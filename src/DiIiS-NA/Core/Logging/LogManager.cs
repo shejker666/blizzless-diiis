@@ -21,29 +21,20 @@ namespace DiIiS_NA.Core.Logging
 		/// Available loggers.
 		/// </summary>
 		internal readonly static Dictionary<string, Logger> Loggers = new();
-
-		/// <summary>
-		/// Creates and returns a logger named with declaring type.
-		/// </summary>
-		/// <returns>A <see cref="Logger"/> instance.</returns>
-		public static Logger CreateLogger([CallerFilePath] string filePath = "")
-		{
-			var frame = new StackFrame(1, false); // read stack frame.
-			var name = frame.GetMethod().DeclaringType.Name; // get declaring type's name.
-
-			if (name == null) // see if we got a name.
-				throw new Exception("Error getting full name for declaring type.");
-
-			return CreateLogger(name, filePath); // return the newly created logger.
-		}
-
+		
 		/// <summary>
 		/// Creates and returns a logger with given name.
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns>A <see cref="Logger"/> instance.</returns>
-		public static Logger CreateLogger(string name, [CallerFilePath] string filePath = "")
+		public static Logger CreateLogger(string? name = null, [CallerFilePath] string filePath = "")
 		{
+			if (name == null)
+			{
+				var frame = new StackFrame(1, false); // read stack frame.
+				name = frame.GetMethod()?.DeclaringType?.Name ?? "Unknown"; // get declaring type's name.
+			}
+
 			if (!Loggers.ContainsKey(name)) // see if we already have instance for the given name.
 				Loggers.Add(name, new Logger(name, filePath)); // add it to dictionary of loggers.
 

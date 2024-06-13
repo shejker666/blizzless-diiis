@@ -28,7 +28,7 @@ using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Quest;
 using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.World;
 using DiIiS_NA.GameServer.MessageSystem.Message.Fields;
 using DiIiS_NA.D3_GameServer.Core.Types.SNO;
-
+using static DiIiS_NA.Core.MPQ.FileFormats.Monster.MonsterType;
 namespace DiIiS_NA.GameServer.GSSystem.PowerSystem.Payloads
 {
 	public class DeathPayload : Payload
@@ -124,7 +124,7 @@ namespace DiIiS_NA.GameServer.GSSystem.PowerSystem.Payloads
 			}
 
 			if (Target is Minion { Master: Player masterPlr2 }
-			    and (BaseGolem or IceGolem or BoneGolem or DecayGolem or ConsumeFleshGolem or BloodGolem))
+			    and (BaseGolem or IceGolem or BoneGolem or DecayGolem or ConsumeFleshGolem or DiIiS_NA.GameServer.GSSystem.ActorSystem.Implementations.Minions.BloodGolem))
 			{
 				masterPlr2.InGameClient.SendMessage(new MessageSystem.Message.Definitions.Pet.PetDetachMessage()
 				{
@@ -445,7 +445,7 @@ namespace DiIiS_NA.GameServer.GSSystem.PowerSystem.Payloads
 				{
 					if (rangedPlayer.Toon.Class == ToonClass.DemonHunter)
 					{
-						if (monster.MonsterType == (int)DiIiS_NA.Core.MPQ.FileFormats.Monster.MonsterType.Demon)
+						if (monster.MonsterTypeValue == (int)DiIiS_NA.Core.MPQ.FileFormats.Monster.MonsterType.Demon)
 							rangedPlayer.AddAchievementCounter(74987243307065, 1);
 
 						if (PowerMath.Distance2D(rangedPlayer.Position, monster.Position) >= 45f)
@@ -1224,7 +1224,7 @@ namespace DiIiS_NA.GameServer.GSSystem.PowerSystem.Payloads
 				if (player.World.Game.IsHardcore)
 				{
 					player.AddTimedAction(3f, (_) => player.Revive(player.CheckPointPosition));
-					var toon = player.Toon.DBToon;
+					var toon = player.Toon.DbToon;
 					toon.Deaths++;
 					player.World.Game.GameDbSession.SessionUpdate(toon);
 				}

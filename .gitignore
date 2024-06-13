@@ -373,3 +373,5 @@ db/pgadmin/*
 /src/DiIiS-NA/config.ini
 /src/DiIiS-NA/database.Account.config
 /src/DiIiS-NA/database.Worlds.config
+/src/DiIiS-NA/database.Account.Debug.config
+/src/DiIiS-NA/database.Worlds.Debug.config

@@ -360,7 +360,7 @@ namespace DiIiS_NA.D3_GameServer.GSSystem.GameSystem
 					{
 						player.World.SpawnRandomEquip(player, player, LootManager.Epic, player.Attributes[GameAttributes.Level]);
 					}
-					var toon = player.Toon.DBToon;
+					var toon = player.Toon.DbToon;
 					toon.EventsCompleted++;
 					Game.GameDbSession.SessionUpdate(toon);
 					player.CheckQuestCriteria(Game.CurrentSideQuest);
@@ -850,7 +850,7 @@ namespace DiIiS_NA.D3_GameServer.GSSystem.GameSystem
 				{
 					var questHistory = new DBQuestHistory
 					{
-						DBToon = player.Toon.DBToon,
+						DBToon = player.Toon.DbToon,
 						QuestId = Game.CurrentQuest,
 						QuestStep = Game.CurrentStep
 					};

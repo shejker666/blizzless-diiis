@@ -31,7 +31,6 @@ using DiIiS_NA.GameServer.GSSystem.ActorSystem.Implementations.Hirelings;
 using DiIiS_NA.GameServer.GSSystem.GeneratorsSystem;
 using DiIiS_NA.GameServer.GSSystem.AISystem.Brains;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using DiIiS_NA.Core.MPQ.FileFormats;
 using DiIiS_NA.D3_GameServer;
 using DiIiS_NA.D3_GameServer.Core.Types.SNO;
@@ -40,6 +39,7 @@ using Actor = DiIiS_NA.GameServer.GSSystem.ActorSystem.Actor;
 using Monster = DiIiS_NA.GameServer.GSSystem.ActorSystem.Monster;
 using Scene = DiIiS_NA.GameServer.GSSystem.MapSystem.Scene;
 using World = DiIiS_NA.GameServer.GSSystem.MapSystem.World;
+using System.Runtime.CompilerServices;
 
 namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 {
@@ -138,8 +138,8 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 			public int AcceptedPlayers;
 		};
 
-		public readonly Dictionary<WorldSno, List<Action>> OnLoadWorldActions = new();
-		public readonly Dictionary<int, List<Action>> OnLoadSceneActions = new();
+		public readonly Dictionary<WorldSno, List<System.Action>> OnLoadWorldActions = new();
+		public readonly Dictionary<int, List<System.Action>> OnLoadSceneActions = new();
 
 		public BossEncounter CurrentEncounter = new() { SnoId = -1, Activated = false, AcceptedPlayers = 0 };
 
@@ -661,7 +661,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 		/// <param name="joinedPlayer">The new player.</param>
 		public void Enter(Player joinedPlayer)
 		{
-			if (IsHardcore && !joinedPlayer.Toon.DBToon.isHardcore)
+			if (IsHardcore && !joinedPlayer.Toon.DbToon.isHardcore)
 			{
 				return;
 			}
@@ -1270,9 +1270,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 
 		public void SetDifficulty(int diff)
 		{
-			Difficulty = diff;
-			if (Difficulty < 0) Difficulty = 0;
-			if (Difficulty > 19) Difficulty = 19;
+			Difficulty = Math.Clamp(diff, 0, 19);
 			diff++;
 			if (diff > 0)
 			{
@@ -1342,13 +1340,13 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 			target.InGameClient.SendMessage(new NewPlayerMessage
 			{
 				PlayerIndex = joinedPlayer.PlayerIndex,
-				NewToonId = (long)joinedPlayer.Toon.D3EntityID.IdLow,
+				NewToonId = (long)joinedPlayer.Toon.D3EntityId.IdLow,
 				GameAccountId = new GameAccountHandle()
 					{ ID = (uint)joinedPlayer.Toon.GameAccount.BnetEntityId.Low, Program = 0x00004433, Region = 1 },
 				ToonName = joinedPlayer.Toon.Name,
 				Team = 0x00000002,
 				Class = joinedPlayer.ClassSno,
-				snoActorPortrait = joinedPlayer.Toon.DBToon.Cosmetic4,
+				snoActorPortrait = joinedPlayer.Toon.DbToon.Cosmetic4,
 				Level = joinedPlayer.Toon.Level,
 				AltLevel = (ushort)joinedPlayer.Toon.ParagonLevel,
 				HighestHeroSoloRiftLevel = 0,

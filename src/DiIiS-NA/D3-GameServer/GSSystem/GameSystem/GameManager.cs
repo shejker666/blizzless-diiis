@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NHibernate.Util;
 
 namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 {
