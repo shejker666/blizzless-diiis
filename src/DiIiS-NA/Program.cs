@@ -110,8 +110,8 @@ namespace DiIiS_NA
             _diabloCoreEnabled = true;
             Logger.Info("Forcing Diablo III Core to be $[green]$enabled$[/]$ on debug mode.");
 #else
-            if (!DiabloCoreEnabled)
-                Logger.Warning("Diablo III Core is $[red]$disabled$[/]$.");
+            if (!_diabloCoreEnabled)
+                Logger.Warn("Diablo III Core is $[red]$disabled$[/]$.");
 #endif
             var mod = GameModsConfig.Instance;
 #pragma warning disable CS4014
