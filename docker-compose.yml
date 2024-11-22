@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: diiis-na-server
     volumes:
-     - ./publish/config.ini:/app/config.ini
+     - ./src/DiIiS-NA/config.ini:/app/config.ini
     ports:
       - 83:83
       - 1119:1119
