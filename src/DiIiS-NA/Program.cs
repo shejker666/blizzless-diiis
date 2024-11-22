@@ -301,6 +301,7 @@ namespace DiIiS_NA
             }
             finally
             {
+                Logger.Trace("Shutdown in progress !");
                 await Task.WhenAll(
                     boss.ShutdownGracefullyAsync(TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(1)),
                     worker.ShutdownGracefullyAsync(TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(1)));
