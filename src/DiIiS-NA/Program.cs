@@ -313,7 +313,7 @@ namespace DiIiS_NA
         
         {
             Logger.Trace("Shutdown here");
-            Logger.Debug("Stack trace at shutdown: " + Environment.StackTrace); // Log the stack trace
+            Logger.Trace("Stack trace at shutdown: " + Environment.StackTrace); // Log the stack trace
             if (_shuttingDown) return;
             _shuttingDown = true;
             if (!IsCancellationRequested())
