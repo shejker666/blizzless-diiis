@@ -70,7 +70,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 		private bool SenderServerConnected()
 		{
 			Logger.Info("GameServer connected to BattleNet.");
-			System.Threading.Thread.Sleep(1000);
+			System.Threading.Thread.Sleep(3000);
 			string backEndIp = GameServerConfig.Instance.BindIP;
 			int backEndPort = GameServerConfig.Instance.Port;
 			bool pvp = false;
