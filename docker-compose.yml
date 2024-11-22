@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: diiis-na-server
+    network_mode: host
     volumes:
      - ./src/DiIiS-NA/config.ini:/app/config.ini
     ports:
