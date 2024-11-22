@@ -5,7 +5,11 @@ services:
       dockerfile: Dockerfile
     container_name: diiis-na-server
     ports:
+      - 83:83
+      - 1119:1119
       - 1234:1234
+      - 2001:2001
+      
     depends_on:
       db:
         condition: service_healthy
