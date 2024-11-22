@@ -8,6 +8,7 @@ RUN dotnet restore "src/DiIiS-NA/Blizzless.csproj"
 
 # Copy the rest of the project files and build the application
 COPY ["src/", "src/"]
+COPY ["db/", "db/"]
 WORKDIR "/app/src/DiIiS-NA"
 RUN dotnet publish "Blizzless.csproj" -c Release --runtime linux-x64 --self-contained true -o /app/publish
 
