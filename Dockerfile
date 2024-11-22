@@ -9,7 +9,7 @@ RUN dotnet restore "src/DiIiS-NA/Blizzless.csproj"
 # Copy the rest of the project files and build the application
 COPY ["src/", "src/"]
 WORKDIR "/app/src/DiIiS-NA"
-RUN dotnet publish "Blizzless.csproj" -c Release --runtime linux-x64 --self-contained true -o /app/publish
+RUN dotnet publish "Blizzless.csproj" -c Debug --runtime linux-x64 --self-contained true -o /app/publish
 
 # Use the official .NET runtime image to run the application
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
