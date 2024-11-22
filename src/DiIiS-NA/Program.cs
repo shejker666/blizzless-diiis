@@ -260,7 +260,7 @@ namespace DiIiS_NA
                 while (!IsCancellationRequested())
                 {
                     var line = Console.ReadLine();
-                    if (line is null or "!q" or "!quit" or "!exit")
+                    if (line is "!q" or "!quit" or "!exit")
                     {
                         Logger.Info("Break !quit");
                         break;
