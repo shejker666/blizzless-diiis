@@ -296,6 +296,7 @@ namespace DiIiS_NA
             }
             catch (Exception e)
             {
+                Logger.Info(e.ToString());
                 Shutdown(e);
             }
             finally
