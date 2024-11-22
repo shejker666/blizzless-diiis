@@ -36,6 +36,7 @@ using DiIiS_NA.Core.Extensions;
 using DiIiS_NA.D3_GameServer;
 using Spectre.Console;
 using Environment = System.Environment;
+using FluentNHibernate.Utils;
 
 namespace DiIiS_NA
 {
@@ -261,6 +262,7 @@ namespace DiIiS_NA
                     var line = Console.ReadLine();
                     if (line is null or "!q" or "!quit" or "!exit")
                     {
+                        Logger.Info("Break !quit");
                         break;
                     }
 
