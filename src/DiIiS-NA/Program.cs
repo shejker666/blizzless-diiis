@@ -310,8 +310,10 @@ namespace DiIiS_NA
 
         private static bool _shuttingDown = false;
         public static void Shutdown(Exception exception = null)
+        
         {
             Logger.Trace("Shutdown here");
+            Logger.Debug("Stack trace at shutdown: " + Environment.StackTrace); // Log the stack trace
             if (_shuttingDown) return;
             _shuttingDown = true;
             if (!IsCancellationRequested())
