@@ -260,25 +260,28 @@ namespace DiIiS_NA
                 while (!IsCancellationRequested())
                 {
                     var line = Console.ReadLine();
-                    if (line is "!q" or "!quit" or "!exit")
+                    if (line == "!q" || line == "!quit" || line == "!exit")
                     {
                         Logger.Info("Break !quit");
                         break;
                     }
 
-                    if (line is "!cls" or "!clear" or "cls" or "clear")
+                    if (line == "!cls" || line == "!clear" || line == "cls" || line == "clear")
                     {
                         AnsiConsole.Clear();
                         AnsiConsole.Cursor.SetPosition(0, 0);
                         continue;
                     }
 
-                    if (line.ToLower().StartsWith("!sno"))
+                    if (line.StartsWith("!sno", StringComparison.OrdinalIgnoreCase))
                     {
                         if (IsTargetEnabled("ansi"))
                             Console.Clear();
-                        MPQStorage.Data.SnoBreakdown(line.ToLower().Equals("!sno 1") ||
-                                                     line.ToLower().Equals("!sno true"));
+                        
+                        MPQStorage.Data.SnoBreakdown(
+                            line.Equals("!sno 1", StringComparison.OrdinalIgnoreCase) || 
+                            line.Equals("!sno true", StringComparison.OrdinalIgnoreCase)
+                        );
                         continue;
                     }
 
