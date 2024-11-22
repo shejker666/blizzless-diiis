@@ -19,7 +19,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Expose the port your application is running on (if needed)
-EXPOSE 5000
+EXPOSE 1345
 
 # Start the application
 ENTRYPOINT ["./Blizzless"]
