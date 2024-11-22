@@ -75,7 +75,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 			int backEndPort = GameServerConfig.Instance.Port;
 			bool pvp = false;
 			if (!pvp){
-				Logger.Debug("Ip: {0}|{1}", backEndIp, backEndPort);
+				Logger.Info("Ip: {0}|{1}", backEndIp, backEndPort);
 				RegisterGameServer(backEndIp, backEndPort);
 			}
 			else
