@@ -1,0 +1,604 @@
+{
+  "Header": {
+    "DeadBeef": -559038737,
+    "SnoType": 2458,
+    "Unknown1": 0,
+    "Unknown2": 0,
+    "Unknown3": 0,
+    "Unknown4": 0,
+    "SNOId": 306532,
+    "BalanceType": 8,
+    "I0": 1655929658,
+    "I1": 0
+  },
+  "Items": [
+    {
+      "Hash": -1292859639,
+      "Name": "1xx_Damage 0.1 Legendary",
+      "GBID": 0,
+      "PAD": 0,
+      "SNOActor": 3,
+      "ItemTypesGBID": 100,
+      "Flags": 1,
+      "DyeType": 1,
+      "ItemLevel": 1,
+      "ItemAct": 1,
+      "AffixLevel": 1,
+      "BonusAffixes": 1,
+      "BonusMajorAffixes": 1,
+      "BonusMinorAffixes": 0,
+      "MaxSockets": 1,
+      "MaxStackSize": 1,
+      "Cost": 1,
+      "CostAlt": 5,
+      "IdentifyCost": 30,
+      "SellOverrideCost": 1215,
+      "RemoveGemCost": 9,
+      "RequiredLevel": 0,
+      "CrafterRequiredLevel": 0,
+      "BaseDurability": 0,
+      "DurabilityVariance": -1,
+      "EnchantAffixCost": -1,
+      "EnchantAffixCostX1": -1,
+      "TransmogUnlockCrafterLevel": 130731,
+      "TransmogCost": 213613,
+      "SNOBaseItem": 2044719016,
+      "SNOSet": -1,
+      "SNOComponentTreasureClass": -1,
+      "SNOComponentTreasureClassMagic": -1,
+      "SNOComponentTreasureClassRare": -1,
+      "SNOComponentTreasureClassLegend": -1,
+      "SNORareNamePrefixStringList": -1,
+      "SNORareNameSuffixStringList": -1,
+      "StartEffect": -1,
+      "EndEffect": -1,
+      "PortraitBkgrnd": -1588776611,
+      "PortraitHPBar": -1,
+      "PortraitBanner": -1,
+      "PortraitFrame": -1,
+      "Labels": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "Pad": "NaN",
+      "WeaponDamageMin": "NaN",
+      "WeaponDamageDelta": "NaN",
+      "DamageMinVariance": "NaN",
+      "DamageDeltaVariance": "NaN",
+      "AttacksPerSecond": "NaN",
+      "Armor": "NaN",
+      "ArmorDelta": "NaN",
+      "SNOSkill0": -1,
+      "SkillI0": -1,
+      "SNOSkill1": -1,
+      "SkillI1": -1,
+      "SNOSkill2": -1,
+      "SkillI2": -1,
+      "SNOSkill3": -1,
+      "SkillI3": 485534122,
+      "Attribute": [
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": 2746136,
+          "SNOParam": 40,
+          "Formula": []
+        },
+        {
+          "AttributeId": 2746176,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 2746176,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 2746176,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 807429479,
+          "SNOParam": 1277178414,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        }
+      ],
+      "Quality": 0,
+      "RecipeToGrant": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TransmogsToGrant": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Massive0": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "LegendaryAffixFamily": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "MaxAffixLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "I38": [
+        3,
+        100,
+        1,
+        1,
+        1,
+        1
+      ],
+      "LegendaryFamily": 1,
+      "GemT": 1,
+      "CraftingTier": 1,
+      "CraftingQuality": 0,
+      "snoActorPageOfFatePortal": 1,
+      "snoWorldPageOfFate1": 1,
+      "snoWorldPageOfFate2": 1,
+      "snoLevelAreaPageOfFatePortal": 25,
+      "EnchantAffixIngredientsCount": 50,
+      "EnchantAffixIngredients": [
+        {
+          "ItemsGBID": 2835,
+          "Count": 29
+        },
+        {
+          "ItemsGBID": 22,
+          "Count": 22
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": 130731,
+          "Count": 213613
+        },
+        {
+          "ItemsGBID": 2044719016,
+          "Count": -1
+        }
+      ],
+      "EnchantAffixIngredientsCountX1": -1,
+      "EnchantAffixIngredientsX1": [
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1588776611
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        },
+        {
+          "ItemsGBID": -1,
+          "Count": -1
+        }
+      ],
+      "LegendaryPowerItemReplacement": -1,
+      "SeasonRequiredToDrop": -1,
+      "Attribute1": [
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        }
+      ],
+      "JewelSecondaryEffectUnlockRank": -1,
+      "JewelMaxRank": -1,
+      "MainEffect": -1,
+      "DateReleased": -1,
+      "VacuumPickup": -1,
+      "CostAlt2": 485534122,
+      "DynamicCraftCostMagic": -1,
+      "DynamicCraftCostRare": -1,
+      "DynamicCraftAffixCount": -1,
+      "SeasonCacheTreasureClass": -1
+    },
+    {
+      "Hash": 2019952886,
+      "Name": "������������������������������������������������������������������������������",
+      "GBID": 0,
+      "PAD": 0,
+      "SNOActor": 1601730609,
+      "ItemTypesGBID": 1634558276,
+      "Flags": 807429479,
+      "DyeType": 1277178670,
+      "ItemLevel": 1852139365,
+      "ItemAct": 2037539172,
+      "AffixLevel": 0,
+      "BonusAffixes": 0,
+      "BonusMajorAffixes": 0,
+      "BonusMinorAffixes": 0,
+      "MaxSockets": 0,
+      "MaxStackSize": 0,
+      "Cost": 0,
+      "CostAlt": 0,
+      "IdentifyCost": 0,
+      "SellOverrideCost": 0,
+      "RemoveGemCost": 0,
+      "RequiredLevel": 0,
+      "CrafterRequiredLevel": 0,
+      "BaseDurability": 0,
+      "DurabilityVariance": 0,
+      "EnchantAffixCost": 0,
+      "EnchantAffixCostX1": 0,
+      "TransmogUnlockCrafterLevel": 0,
+      "TransmogCost": 0,
+      "SNOBaseItem": 0,
+      "SNOSet": 0,
+      "SNOComponentTreasureClass": 0,
+      "SNOComponentTreasureClassMagic": 0,
+      "SNOComponentTreasureClassRare": 0,
+      "SNOComponentTreasureClassLegend": 0,
+      "SNORareNamePrefixStringList": 0,
+      "SNORareNameSuffixStringList": 0,
+      "StartEffect": 0,
+      "EndEffect": 0,
+      "PortraitBkgrnd": 0,
+      "PortraitHPBar": 0,
+      "PortraitBanner": 0,
+      "PortraitFrame": 0,
+      "Labels": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Pad": 0.0,
+      "WeaponDamageMin": 0.0,
+      "WeaponDamageDelta": 0.0,
+      "DamageMinVariance": 0.0,
+      "DamageDeltaVariance": 0.0,
+      "AttacksPerSecond": 0.0,
+      "Armor": 0.0,
+      "ArmorDelta": 0.0,
+      "SNOSkill0": 0,
+      "SkillI0": 0,
+      "SNOSkill1": 0,
+      "SkillI1": 0,
+      "SNOSkill2": 0,
+      "SkillI2": 0,
+      "SNOSkill3": 0,
+      "SkillI3": 0,
+      "Attribute": [
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 3,
+          "SNOParam": 100,
+          "Formula": []
+        },
+        {
+          "AttributeId": 1,
+          "SNOParam": 1,
+          "Formula": []
+        },
+        {
+          "AttributeId": 1,
+          "SNOParam": 40,
+          "Formula": []
+        },
+        {
+          "AttributeId": 39,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 213613,
+          "SNOParam": 2044719016,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": -1,
+          "SNOParam": -1,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": -1,
+          "Formula": []
+        }
+      ],
+      "Quality": 2746216,
+      "RecipeToGrant": [
+        40,
+        -1,
+        -1,
+        0,
+        0,
+        2746256,
+        0,
+        -1,
+        -1,
+        0
+      ],
+      "TransmogsToGrant": [
+        0,
+        2746256,
+        0,
+        -1,
+        -1,
+        0,
+        0,
+        2746256
+      ],
+      "Massive0": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "LegendaryAffixFamily": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "MaxAffixLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "I38": [
+        1601730609,
+        1634558276,
+        1226859879,
+        0,
+        0,
+        0
+      ],
+      "LegendaryFamily": 0,
+      "GemT": 0,
+      "CraftingTier": 0,
+      "CraftingQuality": 0,
+      "snoActorPageOfFatePortal": 0,
+      "snoWorldPageOfFate1": 0,
+      "snoWorldPageOfFate2": 0,
+      "snoLevelAreaPageOfFatePortal": 0,
+      "EnchantAffixIngredientsCount": 0,
+      "EnchantAffixIngredients": [
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        }
+      ],
+      "EnchantAffixIngredientsCountX1": 0,
+      "EnchantAffixIngredientsX1": [
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        },
+        {
+          "ItemsGBID": 0,
+          "Count": 0
+        }
+      ],
+      "LegendaryPowerItemReplacement": 0,
+      "SeasonRequiredToDrop": 0,
+      "Attribute1": [
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        },
+        {
+          "AttributeId": 0,
+          "SNOParam": 0,
+          "Formula": []
+        }
+      ],
+      "JewelSecondaryEffectUnlockRank": 0,
+      "JewelMaxRank": 0,
+      "MainEffect": 0,
+      "DateReleased": 0,
+      "VacuumPickup": 0,
+      "CostAlt2": 0,
+      "DynamicCraftCostMagic": 0,
+      "DynamicCraftCostRare": 0,
+      "DynamicCraftAffixCount": 0,
+      "SeasonCacheTreasureClass": 0
+    }
+  ]
+}
