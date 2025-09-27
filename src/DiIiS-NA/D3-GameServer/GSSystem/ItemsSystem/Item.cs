@@ -910,6 +910,10 @@ namespace DiIiS_NA.GameServer.GSSystem.ItemsSystem
                     playerAcc.HeartofFright++;
                     Destroy();
                     break;
+                //case ActorSno._currency_platinum_flippy: //Platinum coin
+                //    playerAcc.Platinum++;
+                //    Destroy();
+                //    break;
                 default:
                     player.Inventory.PickUp(this);
                     break;
