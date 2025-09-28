@@ -355,19 +355,12 @@ namespace DiIiS_NA.LoginServer.Base
 
         private static string GetWebSocketLocation(IChannelPipeline cp, IHttpRequest req, string path)
         {
-            string str = "ws";
-            if (cp.Get<TlsHandler>() != null)
-            {
-                str = "wss";
-            }
+            string protocol = cp.Get<TlsHandler>() != null ? "wss" : "ws";
 
-            string str2 = null;
-            if (req.Headers.TryGet(HttpHeaderNames.Host, out ICharSequence value))
-            {
-                str2 = value.ToString();
-            }
+            // Ignore the Host header and default to a placeholder or IP address
+            string host = "192.168.1.100"; // Replace with your desired default host, e.g., the server's IP or DNS.
 
-            return str + "://" + str2 + path;
+            return $"{protocol}://{host}{path}";
         }
     }
 }

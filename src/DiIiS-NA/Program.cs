@@ -36,6 +36,7 @@ using DiIiS_NA.Core.Extensions;
 using DiIiS_NA.D3_GameServer;
 using Spectre.Console;
 using Environment = System.Environment;
+using FluentNHibernate.Utils;
 
 namespace DiIiS_NA
 {
@@ -110,8 +111,8 @@ namespace DiIiS_NA
             _diabloCoreEnabled = true;
             Logger.Info("Forcing Diablo III Core to be $[green]$enabled$[/]$ on debug mode.");
 #else
-            if (!DiabloCoreEnabled)
-                Logger.Warning("Diablo III Core is $[red]$disabled$[/]$.");
+            if (!_diabloCoreEnabled)
+                Logger.Warn("Diablo III Core is $[red]$disabled$[/]$.");
 #endif
             var mod = GameModsConfig.Instance;
 #pragma warning disable CS4014
@@ -255,27 +256,35 @@ namespace DiIiS_NA
                 IChannel boundChannel = await serverBootstrap.BindAsync(loginConfig.Port);
 
                 Logger.Info("$[bold deeppink4]$Gracefully$[/]$ shutdown with $[red3_1]$CTRL+C$[/]$ or $[deeppink4]$!q[uit]$[/]$.");
+                Logger.Info("{0}", IsCancellationRequested());
                 while (!IsCancellationRequested())
                 {
                     var line = Console.ReadLine();
-                    if (line is null or "!q" or "!quit" or "!exit")
+                    if(line == null){
+                        continue;
+                    }
+                    if (line == "!q" || line == "!quit" || line == "!exit")
                     {
+                        Logger.Info("Break !quit");
                         break;
                     }
 
-                    if (line is "!cls" or "!clear" or "cls" or "clear")
+                    if (line == "!cls" || line == "!clear" || line == "cls" || line == "clear")
                     {
                         AnsiConsole.Clear();
                         AnsiConsole.Cursor.SetPosition(0, 0);
                         continue;
                     }
 
-                    if (line.ToLower().StartsWith("!sno"))
+                    if (line.StartsWith("!sno", StringComparison.OrdinalIgnoreCase))
                     {
                         if (IsTargetEnabled("ansi"))
                             Console.Clear();
-                        MPQStorage.Data.SnoBreakdown(line.ToLower().Equals("!sno 1") ||
-                                                     line.ToLower().Equals("!sno true"));
+                        
+                        MPQStorage.Data.SnoBreakdown(
+                            line.Equals("!sno 1", StringComparison.OrdinalIgnoreCase) || 
+                            line.Equals("!sno true", StringComparison.OrdinalIgnoreCase)
+                        );
                         continue;
                     }
 
@@ -296,10 +305,12 @@ namespace DiIiS_NA
             }
             catch (Exception e)
             {
+                Logger.Info(e.ToString());
                 Shutdown(e);
             }
             finally
             {
+                Logger.Trace("Shutdown in progress !");
                 await Task.WhenAll(
                     boss.ShutdownGracefullyAsync(TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(1)),
                     worker.ShutdownGracefullyAsync(TimeSpan.FromMilliseconds(100), TimeSpan.FromSeconds(1)));
@@ -308,7 +319,10 @@ namespace DiIiS_NA
 
         private static bool _shuttingDown = false;
         public static void Shutdown(Exception exception = null)
+        
         {
+            Logger.Trace("Shutdown here");
+            Logger.Trace("Stack trace at shutdown: " + Environment.StackTrace); // Log the stack trace
             if (_shuttingDown) return;
             _shuttingDown = true;
             if (!IsCancellationRequested())
@@ -425,6 +439,7 @@ namespace DiIiS_NA
                 Logger.Trace("Discord bot Disabled..");
             }
             DiIiS_NA.GameServer.GSSystem.GeneratorsSystem.SpawnGenerator.RegenerateDensity();
+            Logger.Trace("We are here first");
             DiIiS_NA.GameServer.ClientSystem.GameServer.GSBackend = new GsBackend(LoginServerConfig.Instance.BindIP, LoginServerConfig.Instance.WebPort);
         }
 

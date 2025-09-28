@@ -375,3 +375,6 @@ db/pgadmin/*
 /src/DiIiS-NA/database.Worlds.config
 /src/DiIiS-NA/database.Account.Debug.config
 /src/DiIiS-NA/database.Worlds.Debug.config
+
+# Generated config.mods.json
+config.mods.json
