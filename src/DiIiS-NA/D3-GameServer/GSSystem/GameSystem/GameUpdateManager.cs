@@ -25,7 +25,7 @@ namespace DiIiS_NA.GameServer.GSSystem.GameSystem
 				var thread = new GameUpdateThread();
 				//thread.CPUAffinity = (1UL << coreId);
 				_updateWorkers.Add(thread);
-				var loopThread = new Thread(thread.Run) { Name = "UpdateWorkerThread", IsBackground = true }; ; // create the game update thread.
+				var loopThread = new Thread(thread.Run) { Name = "UpdateWorkerThread", IsBackground = true };
 				loopThread.Start();
 			}
 			Logger.Info("Started {0} threads", CPUCount);
