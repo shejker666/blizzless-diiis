@@ -77,7 +77,7 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
             const int anniversaryEventStatus = 1;
             const int challengeRiftNumber = 1;
             const bool freeToPlay = true;
-            const bool storeStatus = false; // false
+            const bool storeStatus = true; // false (true - disabled, false - enabled)
             const string catalogDigest = "C42DC6117A7008EDA2006542D6C07EAD096DAD90";
             const string catalogVersion = "633565800390338000";
             const int regionId = 1;
@@ -92,8 +92,8 @@ namespace DiIiS_NA.LoginServer.ServicesSystem.Services
                 $" OnlineService.Store.Status={(storeStatus ? "1" : "0")}" + //Store Status, 0 - Enabled, 1 - Disabled
                 $" OnlineService.Store.ProductCatalogDigest={catalogDigest}" + //China
                 $" OnlineService.Store.ProductCatalogVersion={catalogVersion}" + //Chinese Catalog
-                //" OnlineService.Store.ProductCatalogDigest=79162283AFACCBA5DA989BD341F7B782860AC1F4" + //Euro
-                //" OnlineService.Store.ProductCatalogVersion=635984100169931000" + //Euro
+                                                                                 //" OnlineService.Store.ProductCatalogDigest=79162283AFACCBA5DA989BD341F7B782860AC1F4" + //Euro
+                                                                                 //" OnlineService.Store.ProductCatalogVersion=635984100169931000" + //Euro
                 $" OnlineService.Region.Id={regionId}"); //Region
 
             Init.SetSeenTutorials(ByteString.CopyFrom(Client.Account.GameAccount.DBGameAccount.SeenTutorials));
