@@ -8,7 +8,7 @@ DiIiS is a fully-functional open-source local server for [Diablo III: Reaper of 
 
 # Development
 
-Developers, please contribute using the branch: **_community_**, always create your branches from it.
+Developers, please contribute using the branch: **_community_**, always create your branches from it and also follow the Roadmap below.
 
 # Enthusiasts
 
@@ -82,6 +82,16 @@ Creates an account with Login `username@`, password `YourPassword` and BattleTag
 
 Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag` with rank `owner`
 
+### Example:
+
+> !account add username@ YourPassword YourBattleTag
+
+Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag`
+
+> !account add username@ YourPassword YourBattleTag owner
+
+Creates an account with Login `username@`, password `YourPassword` and BattleTag `YourBattleTag` with rank `owner`
+
 ## Prepare Client
 
 Do this for each client connecting to the server.
@@ -132,7 +142,7 @@ The command system allows you to get control of the game world if you have right
 
 Check the [report form](docs/report-form.md) before submitting issue, this will help people save time!
 
-# Development Roadmap – Diablo-like Server/Client
+# Development Roadmap – DIII Emulator
 ### 1️⃣ Rift / Greater Rift System
 
 GR closure: ensure the Greater Rift closes automatically after 15 minutes.
