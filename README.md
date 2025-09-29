@@ -146,7 +146,8 @@ The command system allows you to get control of the game world if you have right
 
 Check the [report form](docs/report-form.md) before submitting issue, this will help people save time!
 
-# Development Roadmap – DiIiS Emulator
+# Development Roadmap – DIII Emulator
+
 ### 1️⃣ Rift / Greater Rift System
 
 GR closure: ensure the Greater Rift closes automatically after 15 minutes.
