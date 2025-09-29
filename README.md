@@ -6,6 +6,10 @@
 
 DiIiS is a fully-functional open-source local server for [Diablo III: Reaper of Souls](https://eu.diablo3.blizzard.com).
 
+# Disclaimer
+
+[Disclaimer and Project Philosophy](disclaimer.md).
+
 # Development
 
 Developers, please contribute using the branch: **_community_**, always create your branches from it and also follow the Roadmap below.
@@ -54,7 +58,7 @@ The currently supported version of the client: **2.7.4.84161**
 
 #### Or using docker
 1. [Install docker](https://docs.docker.com/get-docker/)
-2. Run `docker-compose up` inside [db](db) folder.
+2. Run `docker-compose up` from root folder (here).
 
 ### Compile and run
 1. Install [.NET 7 SDK and runtime](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) (just runtime, not asp.net or desktop)
@@ -96,7 +100,7 @@ Creates an account with Login `username@`, password `YourPassword` and BattleTag
 
 Do this for each client connecting to the server.
 
-1. Get [supported client](#supported-clients) Diablo 3.
+1. Get [supported client](#supported-clients) D3 (2.7.4).
 
 2. Install certificate [bnetserver.p12](src/DiIiS-NA/bnetserver.p12), password - `123` (the game verifies the CA root certificates).
 
@@ -142,7 +146,7 @@ The command system allows you to get control of the game world if you have right
 
 Check the [report form](docs/report-form.md) before submitting issue, this will help people save time!
 
-# Development Roadmap – DIII Emulator
+# Development Roadmap – DiIiS Emulator
 ### 1️⃣ Rift / Greater Rift System
 
 GR closure: ensure the Greater Rift closes automatically after 15 minutes.
