@@ -856,7 +856,7 @@ namespace DiIiS_NA.GameServer.GSSystem.ItemsSystem
                     Destroy();
                     break;
 
-                case ActorSno._crafting_looted_reagent_05: //Death's Breath
+                case ActorSno._crafting_looted_reagent_05: //Death's Breath GBID? 2087837753
                     playerAcc.CraftItem4++;
                     Destroy();
                     break;

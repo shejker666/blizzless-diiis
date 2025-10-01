@@ -2938,31 +2938,51 @@ public class Player : Actor, IMessageConsumer, IUpdateable
             return;
 
         var recipeDefinition = ItemGenerator.GetRecipeDefinition(trainHelper.TrainRecipeName);
+
+        // 1) Validade the Gold.
         if (Inventory.GetGoldAmount() < recipeDefinition.Gold)
             return;
 
-        var requiredIngridients = recipeDefinition.Ingredients.Where(x => x.ItemsGBID > 0);
-        // FIXME: Inventory.HaveEnough doesn't work for some craft consumables
-        var haveEnoughIngredients = requiredIngridients.All(x => Inventory.HaveEnough(x.ItemsGBID, x.Count));
-        if (!haveEnoughIngredients)
-            return;
+        // 2) Extract only valid ingredients (actual items).
+        var requiredIngredients = recipeDefinition.Ingredients
+            .Where(x => x.ItemsGBID > 0 && x.Count > 0)
+            .ToList();
 
+        // 3) If the recipe requires items, validate whether they exist in the Inventory.
+        if (requiredIngredients.Any())
+        {
+
+            var haveEnoughIngredients = requiredIngredients
+                .All(x => Inventory.HaveEnough(x.ItemsGBID, x.Count, this));
+
+            if (!haveEnoughIngredients)
+                return;
+
+            var playerAcc = this.InGameClient.BnetClient.Account.GameAccount;
+
+            // We already know that Artisan training is just consume Death's breath.
+            playerAcc.CraftItem4--;
+
+        }
+
+        // 4) Always discount Gold (all recipes have a gold cost).
         Inventory.RemoveGoldAmount(recipeDefinition.Gold);
-        foreach (var ingr in requiredIngridients)
-            // FIXME: Inventory.GrabSomeItems doesn't work for some craft consumables
-            Inventory.GrabSomeItems(ingr.ItemsGBID, ingr.Count);
 
+        // 5) Advance the artisan's level.
         trainHelper.DbRef.Level++;
         World.Game.GameDbSession.SessionUpdate(trainHelper.DbRef);
 
+        // 6) Related achievements & criteria.
         if (trainHelper.Achievement is not null)
             GrantAchievement(trainHelper.Achievement.Value);
+
         if (trainHelper.Criteria is not null)
             GrantCriteria(trainHelper.Criteria.Value);
 
         if (_artisanTrainHelpers.All(x => x.Value.HasMaxLevel))
             GrantCriteria(74987249993545);
 
+        // 7) Notify the Client.
         client.SendMessage(new CrafterLevelUpMessage
         {
             Type = trainHelper.Type,
@@ -2972,9 +2992,6 @@ public class Player : Actor, IMessageConsumer, IUpdateable
         });
 
         LoadCrafterData();
-
-
-        /**/
     }
 
     public void UnlockTransmog(int transmogGBID)
