@@ -150,47 +150,45 @@ Check the [report form](docs/report-form.md) before submitting issue, this will 
 
 ### 1️⃣ Rift / Greater Rift System
 
-GR closure: ensure the Greater Rift closes automatically after 15 minutes.
-Exit portal: fix the teleport at the end of the GR so it appears and works correctly.
-Resource consumption: make sure the GR Stone and gold are properly consumed when energizing the rift.
-Death time penalty: implement the correct penalty (+5 seconds per death after the 3rd inside the GR).
-Mob removal: clear all enemies after a GR is finished.
-Next-level portal display: ensure the portal to the next GR level only appears when appropriate.
-Level display bug: fix the issue that shows only GR level 13 Torment 2.
-GR pillars validation: review and validate the behavior of GR pillars.
+GR closure: ensure the Greater Rift closes automatically after 15 minutes.  
+Exit portal: fix the teleport at the end of the GR so it appears and works correctly.  
+Resource consumption: make sure the GR Stone and gold are properly consumed when energizing the rift.  
+Death time penalty: implement the correct penalty (+5 seconds per death after the 3rd inside the GR).  
+Mob removal: clear all enemies after a GR is finished.  
+Next-level portal display: ensure the portal to the next GR level only appears when appropriate.  
+Level display bug: fix the issue that shows only GR level 13 Torment 2.  
+GR pillars validation: review and validate the behavior of GR pillars.  
 
 ### 2️⃣ Items & Crafting
 
-Kanai’s Cube: fix legendary power extraction so it correctly consumes the required items.
-Enchant NPC: enable proper re-rolling of any item’s stats.
-Ramaladni’s Gift: ensure it correctly adds a socket to weapons.
-Gem validation: review the behavior of normal and legendary gems.
-Affix validation: confirm that all item affixes work as intended.
-Set bonus validation: review and adjust item set bonuses.
-Legendary bonus validation: ensure legendary powers are correctly applied (including duplicate checks).
-Boss drop validation: confirm that bosses drop the correct items.
+Kanai’s Cube: fix legendary power extraction so it correctly consumes the required items.  
+Enchant NPC: enable proper re-rolling of any item’s stats.  
+Ramaladni’s Gift: ensure it correctly adds a socket to weapons.  
+Gem validation: review the behavior of normal and legendary gems.  
+Affix validation: confirm that all item affixes work as intended.  
+Set bonus validation: review and adjust item set bonuses.  
+Legendary bonus validation: ensure legendary powers are correctly applied (including duplicate checks).  
+Boss drop validation: confirm that bosses drop the correct items.  
 
 ### 3️⃣ Progression & Gameplay
 
 Waypoints:
 
-Fix client crash when changing Sanctuary view with the + and – buttons.
-Correctly display the map name when clicked.
-Ensure teleporting through waypoints works reliably.
-Normal rift teleport: fix the portal that remains after a normal rift is closed.
-Character weapon display: fix the bug where the character’s weapon is not shown.
-Difficulty save: store the last difficulty level used by the player for the next session.
-NPC upgrade after level 10: validate that the NPC correctly consumes Death’s Breath when upgrading.
+Fix client crash when changing Sanctuary view with the + and – buttons.  
+Correctly display the map name when clicked.  
+Normal rift teleport: fix the portal that remains after a normal rift is closed.  
+Character weapon display: fix the bug where the character’s weapon is not shown inside the GR.  
+Difficulty save: store the last difficulty level used by the player for the next session.  
 
 ### 4️⃣ Bounties & Rewards
 
 Bounty system: validate the full bounty system and its rewards.
 
 ### Suggested Priorities
-Critical stability: GR closure, resource consumption, exit teleport, and waypoint fixes.
-Player progression: NPC upgrades, Kanai’s Cube, Ramaladni’s Gift, and difficulty saving.
-Balance & content: validations for gems, affixes, set bonuses, legendary bonuses, and boss drops.
-General improvements: visual fixes (weapon display) and overall gameplay polish.
+Critical stability: GR closure, resource consumption, exit teleport, and waypoint fixes.  
+Player progression: NPC upgrades, Kanai’s Cube, Ramaladni’s Gift, and difficulty saving.  
+Balance & content: validations for gems, affixes, set bonuses, legendary bonuses, and boss drops.  
+General improvements: visual fixes (weapon display) and overall gameplay polish.  
 
 # System requirements
 
