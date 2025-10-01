@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DiIiS_NA.Core.Logging;
+﻿using DiIiS_NA.Core.Extensions;
 using DiIiS_NA.Core.Helpers.Math;
-using DiIiS_NA.Core.Storage.AccountDataBase.Entities;
+using DiIiS_NA.Core.Logging;
 using DiIiS_NA.Core.MPQ;
 using DiIiS_NA.Core.MPQ.FileFormats;
+using DiIiS_NA.Core.Storage.AccountDataBase.Entities;
+using DiIiS_NA.GameServer.ClientSystem;
+using DiIiS_NA.GameServer.Core;
 using DiIiS_NA.GameServer.Core.Types.SNO;
 using DiIiS_NA.GameServer.GSSystem.ActorSystem.Implementations;
 using DiIiS_NA.GameServer.GSSystem.ItemsSystem;
+using DiIiS_NA.GameServer.GSSystem.ObjectsSystem;
+using DiIiS_NA.GameServer.GSSystem.PlayerSystem;
 using DiIiS_NA.GameServer.MessageSystem;
-using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Inventory;
 using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.ACD;
 using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Artisan;
-using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Misc;
-using DiIiS_NA.GameServer.GSSystem.ObjectsSystem;
-using DiIiS_NA.GameServer.Core;
-using DiIiS_NA.GameServer.MessageSystem.Message.Fields;
-using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Effect;
-using DiIiS_NA.GameServer.ClientSystem;
 using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Base;
+using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Effect;
+using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Inventory;
+using DiIiS_NA.GameServer.MessageSystem.Message.Definitions.Misc;
+using DiIiS_NA.GameServer.MessageSystem.Message.Fields;
+using DiIiS_NA.LoginServer.AccountsSystem;
+using Discord;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using static DiIiS_NA.Core.MPQ.FileFormats.GameBalance;
-using DiIiS_NA.Core.Extensions;
 
 namespace DiIiS_NA.GameServer.GSSystem.PlayerSystem
 {
@@ -98,21 +102,29 @@ namespace DiIiS_NA.GameServer.GSSystem.PlayerSystem
 			return _buybackGrid;
 		}
 
-		public bool HaveEnough(int GBid, int count)
+		public bool HaveEnough(int gBid, int count, Player? player = null)
 		{
-			return (_inventoryGrid.TotalItemCount(GBid) + _stashGrid.TotalItemCount(GBid)) >= count;
+            // 2087837753 = Death's Breath -> AKA: CraftItem4 _crafting_looted_reagent_05.
+            if (player != null && gBid == 2087837753)
+            {
+                var playerAcc = player.InGameClient.BnetClient.Account.GameAccount;
+                return playerAcc.CraftItem4 > count;
+            }
+
+            return (_inventoryGrid.TotalItemCount(gBid) + _stashGrid.TotalItemCount(gBid)) >= count;
 		}
 
-		public void GrabSomeItems(int GBid, int count)
+		public void GrabSomeItems(int gBid, int count)
 		{
-			if (_inventoryGrid.HaveEnough(GBid, count))
-				_inventoryGrid.GrabSomeItems(GBid, count);
+
+            if (_inventoryGrid.HaveEnough(gBid, count))
+				_inventoryGrid.GrabSomeItems(gBid, count);
 			else
 			{
-				int inBag = _inventoryGrid.TotalItemCount(GBid);
-				_inventoryGrid.GrabSomeItems(GBid, inBag);
+				int inBag = _inventoryGrid.TotalItemCount(gBid);
+				_inventoryGrid.GrabSomeItems(gBid, inBag);
 				count -= inBag;
-				_stashGrid.GrabSomeItems(GBid, count);
+				_stashGrid.GrabSomeItems(gBid, count);
 			}
 		}
 
